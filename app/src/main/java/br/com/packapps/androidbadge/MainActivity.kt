@@ -23,24 +23,27 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
-        //Group Fora de campo
+        //criando Group Fora de campo
         createGroupNotification("Fora de Campo", getString(R.string.off_filed_group_id))
-        //Group Bola rolando
+        //criando Group Bola rolando
         createGroupNotification("Bola rolando", getString(R.string.game_on_group_id))
 
 
+        //Criando Channel "Jogadores para o Group "Fora de Campo"
         createNotificationChannel(
                 getString(R.string.notification_channel_players),
                 "Jogadores",
                  "Canal de notícias dos jogadores fora de campo" ,
                 getString(R.string.off_filed_group_id))
 
+        //Criando Channel "Times" para o Group "Fora de Campo"
         createNotificationChannel(
                 getString(R.string.notification_channel_teams),
                 "Times",
                 "Canal com as principais notícias fora de campo do seu Time do coração",
                 getString(R.string.off_filed_group_id))
 
+        //Criando Channel "Times dentro de Campo" para o Group "Dentro de campo"
         createNotificationChannel(
                 getString(R.string.notification_channel_teams_on_game),
                 "Times",
@@ -57,7 +60,7 @@ class MainActivity : AppCompatActivity() {
 
             val intent = Intent(Settings.ACTION_CHANNEL_NOTIFICATION_SETTINGS)
             intent.putExtra(Settings.EXTRA_APP_PACKAGE, packageName)
-            intent.putExtra(Settings.EXTRA_CHANNEL_ID, "id_channel_fut")
+            intent.putExtra(Settings.EXTRA_CHANNEL_ID, getString(R.string.notification_channel_players))
             startActivity(intent)
         }
     }
