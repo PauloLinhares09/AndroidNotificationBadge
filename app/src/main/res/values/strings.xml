@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Android Badge</string>
+    <string name="action_settings">Settings</string>
+    <string name="notification_channel">Channel Futebol</string>
+    <string name="players_group_id">players_group_id</string>
+    <string name="notification_channel_players">notification_channel_players</string>
+    <string name="teams_group_id">teams_group_id</string>
+    <string name="notification_channel_teams">notification_channel_teams</string>
+    <string name="notification_channel_name_players">Jogadores</string>
+    <string name="off_filed_group_id">off_field_group_id</string>
+    <string name="game_on_group_id">game_on_group_id</string>
+    <string name="notification_channel_teams_on_game">notiofication_channel_id_game_on</string>
+</resources>
