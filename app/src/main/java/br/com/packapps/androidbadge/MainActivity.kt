@@ -1,8 +1,10 @@
 package br.com.packapps.androidbadge
 
+import android.annotation.SuppressLint
 import android.app.NotificationChannel
 import android.app.NotificationChannelGroup
 import android.app.NotificationManager
+import android.app.PendingIntent
 import android.content.Context
 import android.os.Build
 import android.os.Bundle
@@ -14,10 +16,13 @@ import android.view.MenuItem
 import kotlinx.android.synthetic.main.activity_main.*
 import android.content.Intent
 import android.provider.Settings
+import android.support.v4.app.NotificationCompat
+import android.support.v4.app.NotificationManagerCompat
 
 
 class MainActivity : AppCompatActivity() {
 
+    @SuppressLint("ServiceCast")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -58,10 +63,23 @@ class MainActivity : AppCompatActivity() {
             Snackbar.make(view, "Notification created. See icon of the App", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show()
 
-            val intent = Intent(Settings.ACTION_CHANNEL_NOTIFICATION_SETTINGS)
-            intent.putExtra(Settings.EXTRA_APP_PACKAGE, packageName)
-            intent.putExtra(Settings.EXTRA_CHANNEL_ID, getString(R.string.notification_channel_players))
-            startActivity(intent)
+            val intent = Intent(this, MainActivity::class.java)
+
+            val pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+            val notification = NotificationCompat.Builder(this, getString(R.string.notification_channel_teams))
+                    .setContentTitle("Fechou com o Flamengo")
+                    .setContentText("Ronaldo fenômeno volta aos gramados e acerta passe vitalício com o Flamengo ;)")
+                    .setSmallIcon(R.mipmap.ic_launcher)
+                    .setBadgeIconType(R.mipmap.ic_launcher_round)
+                    .setContentIntent(pendingIntent)
+                    .setAutoCancel(true)
+
+
+            val notificationManagerCompat = NotificationManagerCompat.from(this)
+            notificationManagerCompat.notify(0, notification.build())
+
+
+
         }
     }
 
@@ -100,7 +118,13 @@ class MainActivity : AppCompatActivity() {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         return when (item.itemId) {
-            R.id.action_settings -> true
+            R.id.action_settings_notification -> {
+                val intent = Intent(Settings.ACTION_CHANNEL_NOTIFICATION_SETTINGS)
+                intent.putExtra(Settings.EXTRA_APP_PACKAGE, packageName)
+                intent.putExtra(Settings.EXTRA_CHANNEL_ID, getString(R.string.notification_channel_players))
+                startActivity(intent)
+                true
+            }
             else -> super.onOptionsItemSelected(item)
         }
     }

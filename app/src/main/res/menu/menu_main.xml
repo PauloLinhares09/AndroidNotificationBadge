@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="br.com.packapps.androidbadge.MainActivity">
     <item
-        android:id="@+id/action_settings"
+        android:id="@+id/action_settings_notification"
         android:orderInCategory="100"
         android:title="@string/action_settings"
         app:showAsAction="never" />
