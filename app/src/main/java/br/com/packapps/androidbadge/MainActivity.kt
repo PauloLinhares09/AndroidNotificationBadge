@@ -121,7 +121,7 @@ class MainActivity : AppCompatActivity() {
             R.id.action_settings_notification -> {
                 val intent = Intent(Settings.ACTION_CHANNEL_NOTIFICATION_SETTINGS)
                 intent.putExtra(Settings.EXTRA_APP_PACKAGE, packageName)
-                intent.putExtra(Settings.EXTRA_CHANNEL_ID, getString(R.string.notification_channel_players))
+                intent.putExtra(Settings.EXTRA_CHANNEL_ID, getString(R.string.notification_channel_teams))
                 startActivity(intent)
                 true
             }
